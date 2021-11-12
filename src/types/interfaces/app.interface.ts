@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { ETokenType, IUserDocument } from "..";
-import { Request } from "express"
+import { Request, Response } from "express"
 
 export interface ITokenPayload extends jwt.JwtPayload {
   type?: ETokenType

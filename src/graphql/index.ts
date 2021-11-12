@@ -1,5 +1,6 @@
 import { ApolloServer, gql } from 'apollo-server-express';
 import { merge } from 'lodash';
+import { context } from '../utils';
 
 const typeDefs = gql`
   # Comments in GraphQL strings (such as this one) start with the hash (#) symbol.
@@ -29,6 +30,7 @@ const apolloServer = new ApolloServer({ typeDefs, resolvers: merge(
     Query: {},
     // Mutation: {}
   }, resolvers),
+context
 });
 
 export default apolloServer;

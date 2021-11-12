@@ -1,11 +1,13 @@
 import jwt from 'jsonwebtoken';
-import { ETokenType } from "..";
+import { ETokenType, IUserDocument } from "..";
 import { Request } from "express"
-
-export interface IAppRequest extends Request {
-  user?: string;
-}
 
 export interface ITokenPayload extends jwt.JwtPayload {
   type?: ETokenType
+}
+
+export interface IContext {
+  req: Request;
+  res: Response;
+  user?: IUserDocument;
 }

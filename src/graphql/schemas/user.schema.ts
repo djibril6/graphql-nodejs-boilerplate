@@ -8,7 +8,7 @@ export default gql`
     lastname: String
     email: String
     gender: EGender
-    role: UserRole
+    role: EUserRole
     isEmailVerified: String
     accountClosed: String
   }
@@ -26,7 +26,7 @@ export default gql`
     lastname: String
     email: String
     gender: EGender
-    role: String
+    role: EUserRole
   }
 
   input IGetUsers {
@@ -36,13 +36,13 @@ export default gql`
   }
 
    # Queries
-   extend type Query {
+  type Query {
     user(userId: ID!): TUser
     users(input: IGetUsers): [TUser]!
   }
 
   # Mutations
-  extend type Mutation {
+  type Mutation {
     createUser(input: INewUser!): TUser
     updateUser(input: IUpdateUser!): TUser
     deleteUser(userId: ID!): String!

@@ -10,4 +10,10 @@ export default gql`
     female
     male
   }
+
+  # Queries
+  # type Query {}
+
+  # Mutations
+  # type Mutation {}
 `;

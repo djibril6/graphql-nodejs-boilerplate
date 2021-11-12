@@ -61,6 +61,7 @@
     "typescript": "^4.4.4"
   },
   "dependencies": {
+    "@sendgrid/mail": "^7.6.0",
     "apollo-server": "^3.5.0",
     "apollo-server-express": "^3.5.0",
     "bcryptjs": "^2.4.3",

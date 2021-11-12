@@ -31,10 +31,6 @@ export default gql`
   }
 
   # Queries
-  extend type Query {
-    user(userId: ID!): TUser
-    users(input: IGetUsers): [TUser]!
-  }
 
   # Mutations
   extend type Mutation {
@@ -44,6 +40,6 @@ export default gql`
     refreshTokens(refreshToken: String!): TToken!
     forgotPassword(email: String!): String!
     resetPassword(token: String!, password: String!): String!
-    verifyEmail(token: String!): String!
+    sendVerificationEmail: String!
   }
 `;

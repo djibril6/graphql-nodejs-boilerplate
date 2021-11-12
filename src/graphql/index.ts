@@ -1,4 +1,4 @@
-import { ApolloServer, gql } from 'apollo-server-express';
+import { ApolloServer } from 'apollo-server-express';
 import { merge } from 'lodash';
 import { context } from '../utils';
 import { AppSchema, AuthSchema, UserSchema } from './schemas';

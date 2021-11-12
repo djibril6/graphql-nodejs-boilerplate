@@ -3,10 +3,10 @@ import { tokenService, userService } from '../services';
 import { ETokenType, EUserRole, IContext } from '../types';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-export const auth = (
-  next: any,
+export default (
+  next: (parent: any, args: any, context: IContext) => any,
   requiredRights: EUserRole[],
-) => async (root: any, args: any, context: IContext, info: any) => {
+) => async (parent: any, args: any, context: IContext) => {
   try {
     const token = context.req.headers.authorization || ''; // .split(' ')[1];
     if (!token) {
@@ -21,8 +21,8 @@ export const auth = (
       throw new Error('⛔ You don\'t have access to this ressource!');
     }
 
-    return next(root, args, context, info);
+    return next(parent, args, context);
   } catch (error) {
-    throw new AuthenticationError(error);
+    throw new AuthenticationError(error.message);
   }
 };

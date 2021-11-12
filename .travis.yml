@@ -1,0 +1,22 @@
+language: node_js
+node_js:
+  - '16'
+services:
+  - mongodb
+cache: yarn
+branches:
+  only:
+    - main
+env:
+  global:
+    - PORT=4000
+    - MONGODB_URL=mongodb://localhost:27017/boilerplate
+    - MONGODB_URL_DEV=mongodb://localhost:27017/boilerplate
+    - TOKEN_SECRET=thisisasamplesecret
+    - TOKEN_ACCESS_EXPIRATION_MINUTES=30
+    - TOKEN_REFRESH_EXPIRATION_DAYS=30
+    - SENDGRID_API_KEY=blabla
+script:
+  - yarn lint
+  - yarn test
+after_success: yarn coverage:coveralls

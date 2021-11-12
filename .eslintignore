@@ -2,9 +2,6 @@ dist/*
 coverage/*
 node_modules
 
-bin
-cli
-
 **/*.d.ts
 
 /src/public/

@@ -1,7 +1,7 @@
 import { ETokenType } from '..';
 import mongoose from 'mongoose';
 
-export interface ITokenDocument extends Partial<mongoose.Document> {
+export interface ITokenDocument extends mongoose.Document {
   token?: string;
   user?: string | (() => string);
   type?: ETokenType;

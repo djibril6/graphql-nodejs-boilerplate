@@ -4,7 +4,7 @@ import httpStatus from 'http-status';
 import { config } from '../config';
 import { Token } from '../models';
 import { ApiError } from '../utils';
-import { ETokenType, ITokenDocument, ITokenPayload } from '../types';
+import { ETokenType, ITokenPayload } from '../types';
 import { userService } from '.';
 
 
@@ -30,7 +30,8 @@ const saveToken = async (token: string, userId: string, expires: Moment, type: E
 
 
 const verifyToken = async (token: string, type: ETokenType) => {
-  let tokenDoc: ITokenDocument = {};
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let tokenDoc: any = {};
   let payload: string | ITokenPayload;
   try {
     payload = jwt.verify(token, config.jwt.secret);

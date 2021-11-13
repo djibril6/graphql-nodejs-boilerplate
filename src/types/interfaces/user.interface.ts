@@ -1,5 +1,5 @@
-import mongoose from 'mongoose';
-import { EGender, EUserRole } from '..';
+import mongoose, { FilterQuery, Model } from 'mongoose';
+import { EGender, EUserRole, IPaginateOption } from '..';
 
 export interface IUserID {
   id: string;
@@ -43,4 +43,11 @@ export interface IUser extends
 export interface IUserDocument extends mongoose.Document, IUser
 {
   isPasswordMatch?: (password: string) => Promise<boolean>;
+}
+
+export interface IUserModel extends Model<IUserDocument> {
+  // statics
+  isEmailTaken?: (email: string, excludeUserId?: string) => Promise<boolean>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  paginate?: (filter: FilterQuery<IUserDocument>, options: IPaginateOption) => Promise<[IUserDocument, any]>;
 }

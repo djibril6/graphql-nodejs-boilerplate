@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { userController, authController } from '../controllers';
 import { IContext } from '../types';
 
 

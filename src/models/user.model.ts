@@ -1,14 +1,7 @@
-import { Schema, model, Model, FilterQuery } from 'mongoose';
+import { Schema, model } from 'mongoose';
 import bcrypt from 'bcryptjs';
 import { toJSON, paginate } from './plugins';
-import { EGender, EModelNames, EUserRole, IPaginateOption, IUserDocument } from '../types';
-
-interface IUserModel extends Model<IUserDocument> {
-  // statics
-  isEmailTaken?: (email: string, excludeUserId?: string) => Promise<boolean>;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  paginate?: (filter: FilterQuery<IUserDocument>, options: IPaginateOption) => Promise<[IUserDocument, any]>;
-}
+import { EGender, EModelNames, EUserRole, IUserDocument, IUserModel } from '../types';
 
 const userSchema: Schema<IUserDocument> = new Schema(
   {

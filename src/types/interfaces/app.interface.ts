@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import { ETokenType, IUserDocument } from "..";
 import { Request, Response } from "express"
-import { UserDataSource } from '../../datasources';
+import { TokenDataSource, UserDataSource } from '../../datasources';
 
 export interface ITokenPayload extends jwt.JwtPayload {
   type?: ETokenType
@@ -29,18 +29,12 @@ interface IModel {
   Auth: IAuthController;
 }
 
-interface ITokenUtils {
-
-}
-
 export interface IContext {
   req: Request;
   res: Response;
   user?: IUserDocument;
   dataSources?: {
-    users: UserDataSource
+    users: UserDataSource;
+    tokens: TokenDataSource;
   };
-  utils?: {
-    token: ITokenUtils;
-  }
 }

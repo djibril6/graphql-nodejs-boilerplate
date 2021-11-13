@@ -66,6 +66,10 @@ export default class extends MongoDataSource<ITokenDocument, IContext> {
     await tok.remove();
     return tok;
   }
+
+  deleteMany(userId: string, type: ETokenType) {
+    return this.model.deleteMany({ user: userId, type });
+  }
   
   /**
    * Generate access and refresh tokens

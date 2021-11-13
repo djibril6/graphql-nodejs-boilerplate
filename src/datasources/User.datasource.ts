@@ -4,7 +4,7 @@ import { GraphQlApiError } from '../utils';
 import { IUserDocument, IUser, IContext, IUserModel, IPaginateOption, EGraphQlErrorCode } from '../types';
 
 export default class UserDataSource extends MongoDataSource<IUserDocument, IContext> {
-  User: IUserModel;
+  private User: IUserModel;
   constructor(UserModel: IUserModel) {
     super(UserModel);
     this.User = UserModel;
@@ -17,7 +17,7 @@ export default class UserDataSource extends MongoDataSource<IUserDocument, ICont
     return this.User.paginate(filter, options);
   }
 
-  getUserByField(fields: any) {
+  getUserByField(fields: FilterQuery<IUserDocument>) {
     return this.model.findOne(fields);
   }
 

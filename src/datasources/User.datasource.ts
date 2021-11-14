@@ -23,7 +23,7 @@ export default class UserDataSource extends MongoDataSource<IUserDocument, ICont
 
   async createUser(user: IUser) {
     if (await this.User.isEmailTaken(user.email)) {
-      throw new GraphQlApiError('This email is already taken!', EGraphQlErrorCode.BAD_USER_INPUT);
+      throw new GraphQlApiError('This email is already taken!', EGraphQlErrorCode.PERSISTED_QUERY_NOT_SUPPORTED);
     }
     return this.model.create(user);
   }

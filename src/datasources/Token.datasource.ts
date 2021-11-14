@@ -49,6 +49,9 @@ export default class extends MongoDataSource<ITokenDocument, IContext> {
       tokenDoc = await this.model.findOne({ token, type, user: payload.sub});
     }
     if (!tokenDoc) {
+      if (type !== ETokenType.ACCESS) {
+        throw new GraphQlApiError('Token not found', EGraphQlErrorCode.PERSISTED_QUERY_NOT_FOUND);
+      }
       throw new GraphQlApiError('Token not found', EGraphQlErrorCode.UNAUTHENTICATED);
     }
     return tokenDoc;

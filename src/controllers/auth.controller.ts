@@ -25,19 +25,17 @@ async function login(data: ILoginArgs, ctx: IContext) {
 
 async function logout(data: {refreshToken: string}, ctx: IContext) {
   const { refreshToken } = data;
-  const refreshTokenDoc = await ctx.dataSources.tokens.findOne(refreshToken, ETokenType.REFRESH);
-  if (!refreshTokenDoc) {
-    throw new GraphQlApiError('Token not found', EGraphQlErrorCode.PERSISTED_QUERY_NOT_FOUND);
-  }
-  await refreshTokenDoc.remove();
+  await ctx.dataSources.tokens.delete(refreshToken, ETokenType.REFRESH);
+  // await refreshTokenDoc.remove();
   return 'logged out';
 }
 
 async function refreshTokens(data: {refreshToken: string}, ctx: IContext) {
   const { refreshToken } = data;
   const refreshTokenDoc = await ctx.dataSources.tokens.verifyToken(refreshToken, ETokenType.REFRESH);
+  const tokens =  await ctx.dataSources.tokens.generateAuthTokens(refreshTokenDoc.user);
   await refreshTokenDoc.remove();
-  return await ctx.dataSources.tokens.generateAuthTokens(ctx.user.id);
+  return tokens;
 }
 
 async function forgotPassword(data: {email: string}, ctx: IContext) {

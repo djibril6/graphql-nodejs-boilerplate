@@ -10,7 +10,7 @@ export default {
   Mutation: {
     register: catchReq(authValidation.register, authController.register),
     login: catchReq(authValidation.login, authController.login),
-    logout: catchReq(authValidation.logout, authController.logout),
+    logout: auth(catchReq(authValidation.logout, authController.logout)),
     refreshTokens: catchReq(authValidation.refreshTokens, authController.refreshTokens),
     forgotPassword: catchReq(authValidation.forgotPassword, authController.forgotPassword),
     resetPassword: catchReq(authValidation.resetPassword, authController.resetPassword),

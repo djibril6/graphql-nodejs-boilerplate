@@ -9,8 +9,8 @@ export default gql`
     email: String
     gender: EGender
     role: EUserRole
-    isEmailVerified: String
-    accountClosed: String
+    isEmailVerified: Boolean
+    accountClosed: Boolean
   }
 
   input IUpdateUser {

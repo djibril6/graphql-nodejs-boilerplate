@@ -11,7 +11,7 @@ const createUser = Joi.object().keys({
 });
 
 const getUsers = Joi.object().keys({
-  role: Joi.string().valid(EUserRole.ADMIN, EUserRole.USER),
+  role: Joi.string().valid(EUserRole.ADMIN, EUserRole.USER).default(EUserRole.USER),
   sortBy: Joi.string(),
   limit: Joi.number().integer(),
   page: Joi.number().integer(),

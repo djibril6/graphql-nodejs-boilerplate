@@ -2,19 +2,6 @@ import { gql } from 'apollo-server-express';
 
 export default gql`
 
-  input IRegister {
-    firstname: String!
-    lastname: String!
-    email: String!
-    password: String!
-    gender: EGender
-  }
-
-  input ILogin {
-    email: String!
-    password: String!
-  }
-
   type TTokenFormat {
     token: String!
     expires: String!
@@ -34,8 +21,14 @@ export default gql`
 
   # Mutations
   extend type Mutation {
-    register(input: IRegister!): TAuthSuccess!
-    login(input: ILogin!): TAuthSuccess!
+    register(
+      firstname: String!,
+      lastname: String!,
+      email: String!,
+      gender: EGender,
+      password: String!
+    ): TAuthSuccess!
+    login(email: String!,password: String!): TAuthSuccess!
     logout(refreshToken: String!): String!
     refreshTokens(refreshToken: String!): TToken!
     forgotPassword(email: String!): String!

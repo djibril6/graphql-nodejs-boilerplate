@@ -13,14 +13,6 @@ export default gql`
     accountClosed: String
   }
 
-  input INewUser {
-    firstname: String!
-    lastname: String!
-    email: String!
-    gender: EGender
-    role: String
-  }
-
   input IUpdateUser {
     firstname: String
     lastname: String
@@ -29,22 +21,26 @@ export default gql`
     role: EUserRole
   }
 
-  input IGetUsers {
-    role: EUserRole
-    limit: Int
-    page: Int
-  }
-
    # Queries
   type Query {
     user(userId: ID!): TUser
-    users(input: IGetUsers): [TUser]!
+    users(
+      role: EUserRole,
+      limit: Int,
+      page: Int,
+    ): [TUser]!
   }
 
   # Mutations
   type Mutation {
-    createUser(input: INewUser!): TUser
-    updateUser(input: IUpdateUser!): TUser
+    createUser(
+      firstname: String!,
+      lastname: String!,
+      email: String!,
+      gender: EGender,
+      role: String,
+    ): TUser
+    updateUser(userId: ID!, data: IUpdateUser!): TUser
     deleteUser(userId: ID!): String!
   }
 `;

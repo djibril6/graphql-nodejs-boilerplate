@@ -1,5 +1,5 @@
 import sgMail from '@sendgrid/mail';
-import { config, logger } from '../config/';
+import { config, logger } from '../config';
 
 const sendEmail = async (to: string, from: string, subject: string, text: string, html: string) => {
   // using Twilio SendGrid's v3 Node.js Library

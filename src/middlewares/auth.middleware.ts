@@ -16,7 +16,7 @@ export default (
       context.user = await context.dataSources.users.getUser(accessTokenDoc.user.toString());
     }
 
-    if (!requiredRights.includes(context.user.role)) {
+    if (!context.user || (requiredRights && requiredRights.length > 0 && !requiredRights.includes(context.user.role))) {
       throw new Error('⛔ You don\'t have access to this ressource!');
     }
 

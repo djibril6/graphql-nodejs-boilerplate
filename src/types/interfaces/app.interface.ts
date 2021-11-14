@@ -7,28 +7,6 @@ export interface ITokenPayload extends jwt.JwtPayload {
   type?: ETokenType
 }
 
-interface IUserController {
-  getUser: Function;
-  getUsers: Function;
-  createUser: Function;
-  updateUser: Function;
-  deleteUser: Function;
-}
-interface IAuthController {
-  register: Function;
-  login: Function;
-  logout: Function;
-  refreshTokens: Function;
-  forgotPassword: Function;
-  resetPassword: Function;
-  sendVerificationEmail: Function;
-  verifyEmail: Function;
-}
-interface IModel {
-  User: IUserController;
-  Auth: IAuthController;
-}
-
 export interface IContext {
   req: Request;
   res: Response;

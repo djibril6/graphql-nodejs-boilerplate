@@ -13,12 +13,21 @@ export default gql`
     accountClosed: Boolean
   }
 
+  type TPaginatedUsers {
+    results: [TUser]!
+    page: Int!
+    limit: Int!
+    totalPages: Int!
+    totalResults: Int!
+  }
+
   input IUpdateUser {
     firstname: String
     lastname: String
     email: String
     gender: EGender
     role: EUserRole
+    password: String
   }
 
    # Queries
@@ -28,7 +37,7 @@ export default gql`
       role: EUserRole,
       limit: Int,
       page: Int,
-    ): [TUser]!
+    ): TPaginatedUsers!
   }
 
   # Mutations
@@ -38,7 +47,7 @@ export default gql`
       lastname: String!,
       email: String!,
       gender: EGender,
-      role: String,
+      role: EUserRole,
     ): TUser
     updateUser(userId: ID!, data: IUpdateUser!): TUser
     deleteUser(userId: ID!): String!

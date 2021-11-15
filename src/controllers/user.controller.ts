@@ -23,7 +23,7 @@ async function getUsers(data: IGetUserArgs, ctx: IContext) {
 async function getUser(data: {userId: string}, ctx: IContext) {
 
   // User can't have access to another user
-  if (ctx.user.id != data.userId) {
+  if (ctx.user.id != data.userId && ctx.user.role !== EUserRole.ADMIN) {
     throw new GraphQlApiError('You don\'t have access to this ressource', EGraphQlErrorCode.FORBIDDEN);
   }
 
@@ -35,11 +35,16 @@ async function getUser(data: {userId: string}, ctx: IContext) {
 }
 
 async function updateUser(data: {userId: string, data: IUser}, ctx: IContext) {
+  // User can't update another user
+  if (ctx.user.id != data.userId && ctx.user.role !== EUserRole.ADMIN) {
+    throw new GraphQlApiError('You don\'t have access to this ressource', EGraphQlErrorCode.FORBIDDEN);
+  }
   return  await ctx.dataSources.users.updateUser(data.userId, data.data);
 }
 
 async function deleteUser(data: {userId: string}, ctx: IContext) {
-  return await ctx.dataSources.users.deleteUser(data.userId);
+  await ctx.dataSources.users.deleteUser(data.userId);
+  return 'Deleted';
 }
 
 export default {

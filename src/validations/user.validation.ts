@@ -6,12 +6,12 @@ const createUser = Joi.object().keys({
   firstname: Joi.string().required(),
   lastname: Joi.string().required(),
   email: Joi.string().required().email(),
-  role: Joi.string().required().valid(EUserRole.ADMIN, EUserRole.USER),
+  role: Joi.string().valid(EUserRole.ADMIN, EUserRole.USER).default(EUserRole.USER),
   gender: Joi.string().valid(EGender.FEMALE, EGender.MALE),
 });
 
 const getUsers = Joi.object().keys({
-  role: Joi.string().valid(EUserRole.ADMIN, EUserRole.USER).default(EUserRole.USER),
+  role: Joi.string().valid(EUserRole.ADMIN, EUserRole.USER),
   sortBy: Joi.string(),
   limit: Joi.number().integer(),
   page: Joi.number().integer(),

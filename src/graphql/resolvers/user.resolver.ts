@@ -12,8 +12,8 @@ export default {
     users: auth(catchReq(userValidation.getUsers, userController.getUsers), [EUserRole.ADMIN]),
   },
   Mutation: {
-    createUser: auth(catchReq(userValidation.getUsers, userController.createUser), [EUserRole.ADMIN]),
-    updateUser: auth(catchReq(userValidation.getUsers, userController.updateUser), [EUserRole.ADMIN, EUserRole.USER]),
-    deleteUser: auth(catchReq(userValidation.getUsers, userController.deleteUser), [EUserRole.ADMIN]),
+    createUser: auth(catchReq(userValidation.createUser, userController.createUser), [EUserRole.ADMIN]),
+    updateUser: auth(catchReq(userValidation.updateUser, userController.updateUser), [EUserRole.ADMIN, EUserRole.USER]),
+    deleteUser: auth(catchReq(userValidation.deleteUser, userController.deleteUser), [EUserRole.ADMIN]),
   },
 };

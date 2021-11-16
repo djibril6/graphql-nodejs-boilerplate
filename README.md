@@ -1,5 +1,6 @@
 # Node.js Rest API boilerplate
 [![Coverage Status](https://coveralls.io/repos/github/djibril6/graphql-nodejs-boilerplate/badge.svg?branch=main)](https://coveralls.io/github/djibril6/graphql-nodejs-boilerplate?branch=main)
+[![Build Status](https://app.travis-ci.com/djibril6/graphql-nodejs-boilerplate.svg?branch=main)](https://app.travis-ci.com/djibril6/graphql-nodejs-boilerplate)
 
 Node js project boilerplate using GraphQL and typescript
 
